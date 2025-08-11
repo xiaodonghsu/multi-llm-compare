@@ -1,0 +1,13 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.multillmcompare.app
+productName: MultiLLM Compare
+files:
+  - filter:
+      - '**/*'
+      - '!node_modules/**/*'
+win:
+  target: nsis
+  icon: icon.ico
+electronVersion: 37.2.6

@@ -1,0 +1,461 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    color: #333;
+}
+
+.history-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#new-conversation-btn, #history-btn, #api-config-btn {
+    padding: 8px 15px;
+    background-color: #4a89dc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#new-conversation-btn:hover, #history-btn:hover, #api-config-btn:hover {
+    background-color: #3a70c0;
+}
+
+.history-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.history-list {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 5px;
+}
+
+.history-list.show {
+    display: block;
+}
+
+.history-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.history-item:hover {
+    background-color: #f5f5f5;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.history-item-date {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+}
+
+.chat-windows {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    margin-bottom: 20px;
+    min-height: 400px;
+}
+
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #4a89dc;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.model-selector {
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+}
+
+.model-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.model-select:focus {
+    outline: none;
+    border-color: #4a89dc;
+    box-shadow: 0 0 0 2px rgba(74, 137, 220, 0.2);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    max-width: 85%;
+    word-break: break-word;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #4a89dc;
+    color: white;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.system-message {
+    align-self: center;
+    background-color: #f8f8f8;
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em;
+    border: 1px solid #eee;
+}
+
+.settings-area {
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid #eee;
+}
+
+.settings-row {
+    display: flex;
+    gap: 20px;
+}
+
+.setting-item {
+    margin-bottom: 0;
+}
+
+.temperature-container {
+    flex: 1;
+    min-width: 150px;
+}
+
+.max-tokens-container {
+    flex: 1;
+    min-width: 150px;
+}
+
+.system-message-container {
+    flex: 3;
+}
+
+.max-tokens-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#max-tokens-input {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+#max-tokens-input:focus {
+    outline: none;
+    border-color: #4a89dc;
+    box-shadow: 0 0 0 2px rgba(74, 137, 220, 0.2);
+}
+
+.token-btn {
+    padding: 5px 8px;
+    background-color: #4a89dc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8em;
+    transition: background-color 0.2s;
+}
+
+.token-btn:hover {
+    background-color: #3a70c0;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+#temperature-slider {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    outline: none;
+    border-radius: 5px;
+}
+
+#temperature-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4a89dc;
+    cursor: pointer;
+}
+
+#temperature-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4a89dc;
+    cursor: pointer;
+}
+
+#system-message {
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+    font-family: inherit;
+    font-size: 0.9em;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+#user-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+    height: 80px;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+#send-button {
+    padding: 0 20px;
+    background-color: #4a89dc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#send-button:hover {
+    background-color: #3a70c0;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background-color: #999;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* API配置弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px 20px 70px 20px; /* 增加底部内边距，为按钮留出空间 */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 500px;
+    position: relative; /* 添加相对定位 */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#save-api-config {
+    padding: 10px 20px;
+    background-color: #4a89dc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute; /* 使用绝对定位 */
+    right: 20px; /* 距离右边20px */
+    bottom: 20px; /* 距离底部20px */
+}
+
+#save-api-config:hover {
+    background-color: #3a70c0;
+}
+
+@media (max-width: 768px) {
+    .chat-windows {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+    
+    .settings-row {
+        flex-direction: column;
+    }
+}

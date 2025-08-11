@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型对话对比</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>大模型对话对比</h1>
+            <div class="history-controls">
+                <button id="new-conversation-btn">新建对话</button>
+                <div class="history-dropdown">
+                    <button id="history-btn">历史记录 ▼</button>
+                    <div id="history-list" class="history-list"></div>
+                </div>
+                <button id="api-config-btn">配置API</button>
+            </div>
+        </div>
+        
+        <!-- API配置弹窗 -->
+        <div id="api-config-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>配置大模型API</h2>
+                <div class="form-group">
+                    <label for="api-base-url">API Base URL:</label>
+                    <input type="text" id="api-base-url" placeholder="例如: https://api.openai.com/v1">
+                </div>
+                <div class="form-group">
+                    <label for="api-key">API Key:</label>
+                    <input type="password" id="api-key" placeholder="输入您的API密钥">
+                </div>
+                <button id="save-api-config">保存配置</button>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-windows">
+                <div class="chat-window" id="model1-window">
+                    <div class="chat-header">模型 1</div>
+                    <div class="chat-messages" id="model1-messages"></div>
+                    <div class="model-selector">
+                        <select id="model1-select" class="model-select"></select>
+                    </div>
+                </div>
+                <div class="chat-window" id="model2-window">
+                    <div class="chat-header">模型 2</div>
+                    <div class="chat-messages" id="model2-messages"></div>
+                    <div class="model-selector">
+                        <select id="model2-select" class="model-select"></select>
+                    </div>
+                </div>
+                <div class="chat-window" id="model3-window">
+                    <div class="chat-header">模型 3</div>
+                    <div class="chat-messages" id="model3-messages"></div>
+                    <div class="model-selector">
+                        <select id="model3-select" class="model-select"></select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-area">
+                <div class="settings-row">
+                    <div class="setting-item temperature-container">
+                        <label for="temperature-slider">Temperature: <span id="temperature-value">0.7</span></label>
+                        <input type="range" id="temperature-slider" min="0" max="1" step="0.1" value="0.7">
+                    </div>
+                    <div class="setting-item max-tokens-container">
+                        <label for="max-tokens-input">Max Tokens: <span id="max-tokens-value">4096</span></label>
+                        <div class="max-tokens-controls">
+                            <button id="max-tokens-decrease" class="token-btn">÷2</button>
+                            <input type="number" id="max-tokens-input" min="100" max="32000" step="100" value="4096">
+                            <button id="max-tokens-increase" class="token-btn">×2</button>
+                        </div>
+                    </div>
+                    <div class="setting-item system-message-container">
+                        <label for="system-message">System Message:</label>
+                        <textarea id="system-message">你是一个有用的助手。</textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <textarea id="user-input" placeholder="请输入您的问题..."></textarea>
+                <button id="send-button">发送</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="src/app.js" type="module"></script>
+</body>
+</html>

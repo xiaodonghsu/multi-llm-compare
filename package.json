@@ -1,0 +1,17 @@
+{
+  "name": "multillmcompare",
+  "version": "1.0.0",
+  "description": "这是一个简单的Web应用，可以同时向多个大模型发送相同的问题，并比较它们的回答。",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "core-util-is": "^1.0.3"
+  }
+}
